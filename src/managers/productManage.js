@@ -48,3 +48,59 @@ const getProducts = async(limit) =>{
         console.log(`${err}`)
     }
 }
+
+
+//leer producto por id
+const getProductById = async(id) => {
+    try{
+        await getProducts()
+        const product = products.find((p) => p.id === id)
+
+        return product
+    }catch(err){
+        console.log(`${err}`)
+    }
+}
+
+
+//actualizar un producto
+const updateProduct = async(id, productData) => {
+    try{
+        await getProducts()
+
+        const index = products.findIndex((p) => p.id === id)
+        products[index] = {
+            ...products[index],
+            ...productData
+        }
+
+        await fs.promises.writeFile(path, JSON.stringify(products))
+        return products[index]
+
+    }catch(err){
+        console.log(`${err}`)
+    }
+}
+
+
+//eliminar producto
+const deleteProduct = async(id) =>{
+    try{
+        await getProducts()
+
+        products = products.filter((p) => p.id !== id)
+        await fs.promises.writeFile(path, JSON.stringify(products))
+
+        return products
+    }catch(err){
+        console.log(`${err}`)
+    }
+}
+
+export default {
+    addProduct,
+    getProducts,
+    getProductById,
+    updateProduct,
+    deleteProduct
+}
