@@ -1,13 +1,13 @@
 import { Router } from "express"
 import { checkProductData } from "../middleware/checkProductData.middleware.js"
-import productManage from "../managers/productManage.js"
+import productManager from "../managers/productManager.js"
 
 
 const router = Router()
 
 //Al hacer la solicitud GET trae todos los productos
 router.get("/products", async (req, res) =>{
-    const products = await productManage.getProducts()
+    const products = await productManager.getProducts()
     res.send(products)
 })
 
@@ -15,7 +15,7 @@ router.get("/products", async (req, res) =>{
 router.get("/products/:pid", async (req, res) =>{
     try{
         const { pid } = req.params
-        const product = await productManage.getProductById(pid)
+        const product = await productManager.getProductById(pid)
         if(!product) return res.status(404).json({ status:"error", msg:"Producto no encontrado"})
 
         res.status(200).json({status:"ok", product})
@@ -29,7 +29,7 @@ router.get("/products/:pid", async (req, res) =>{
 router.put("/products/:pid", async (req, res) =>{
     const { pid } = req.params
     const body = req.body
-    const product = await productManage.updateProduct(pid, body)
+    const product = await productManager.updateProduct(pid, body)
 
     res.send(product)
 })
@@ -39,7 +39,7 @@ router.put("/products/:pid", async (req, res) =>{
 router.post("/products", checkProductData, async(req, res) =>{
     try{
         const body = req.body
-        const product = await productManage.addProduct(body)
+        const product = await productManager.addProduct(body)
 
         res.status(201).json({ status:"ok", product})
     }catch(err){
@@ -52,7 +52,7 @@ router.post("/products", checkProductData, async(req, res) =>{
 router.delete("/products/:pid", async(req, res) =>{
     try{
         const { pid } = req.params
-        const product = await productManage.getProductById(pid)
+        const product = await productManager.getProductById(pid)
 
         if(!product) return res.status(404).json({ status:"error", msg:"Producto no encontrado"})
 
