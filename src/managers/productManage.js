@@ -32,7 +32,7 @@ const addProduct = async(product) => {
 
 
     }catch(err){
-        console.log(`${err}`)
+        console.log(err)
     }
 }
 
@@ -45,7 +45,7 @@ const getProducts = async(limit) =>{
 
         return products
     } catch(err) {
-        console.log(`${err}`)
+        console.log(err)
     }
 }
 
@@ -58,7 +58,7 @@ const getProductById = async(id) => {
 
         return product
     }catch(err){
-        console.log(`${err}`)
+        console.log(err)
     }
 }
 
@@ -78,7 +78,7 @@ const updateProduct = async(id, productData) => {
         return products[index]
 
     }catch(err){
-        console.log(`${err}`)
+        console.log(err)
     }
 }
 
@@ -93,7 +93,7 @@ const deleteProduct = async(id) =>{
 
         return products
     }catch(err){
-        console.log(`${err}`)
+        console.log(err)
     }
 }
 
