@@ -1,6 +1,6 @@
 
 
-// funcion que actualiza el producto con los datos que se modifiquen en el cuerpo de la solicitud
+//funcion que actualiza el producto con los datos que se modifiquen en el cuerpo de la solicitud
 export const checkProductData = async(req, res, next) => {
     try{
         const { title, description, code, price, stock, category, thumbnails } = req.body
