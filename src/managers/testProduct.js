@@ -1,9 +1,9 @@
-import productManage from "./productManage"
+//import productManage from "./productManage"
 
 //{ title, description, code, price, stock, category, thumbnails }
 
 //añadimos dos productos para probar que este funcionando
-productManage.addProduct({
+/*productManage.addProduct({
     title: "El Monje que Vendió su Ferrari",
     description: "historia de Julian Mantle, un superabogado cuya vida estresante, desequilibrada y obsesionada con el dinero acaba provocándole un infarto.",
     code: "AAA1",
@@ -22,3 +22,5 @@ productManage.addProduct({
     category: "Libro",
     thumbnails: "https://images.cdn2.buscalibre.com/fit-in/360x360/53/cd/53cd2f9bdea6cb278bce6acaaaaa9206.jpg"
 })
+
+productManage.getProducts() */

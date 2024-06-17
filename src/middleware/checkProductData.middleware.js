@@ -11,7 +11,7 @@ export const checkProductData = async(req, res, next) => {
             price,
             stock,
             category,
-            thumbnails
+            thumbnails,
         }
 
         //funcion que verifica que se completen todos los campos

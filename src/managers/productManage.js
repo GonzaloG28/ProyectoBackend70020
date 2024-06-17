@@ -1,9 +1,11 @@
 import fs from "fs"
 import { v4 as uuid } from "uuid"
 
+
+const path = "./src/managers/data/products.json"
+
 //iniciamos los productos vacios
 let products = []
-const path = "./src/managers/data/products.json"
 
 
 
