@@ -14,9 +14,9 @@ export const checkProductData = async(req, res, next) => {
             thumbnails,
         }
 
-        //funcion que verifica que se completen todos los campos
-        if(Object.values(newProduct).includes(undefined)){
-            return res.status(400).json({ status:"error", msg:"Todos los campos son obligatorios"})
+        //funcion que verifica que se completen todos los campos excepto thumbnails
+        if(!title || !description || !code || !price || !stock || !category){
+            return res.status(400).json({ status:"error", msg:"Todos los campos son obligatorios, excepto thumbnails"})
         }
         //permite que continue la ejecucion del endpoint
         next()

@@ -45,6 +45,11 @@ const getProducts = async(limit) =>{
         const parseFile = JSON.parse(fileJson)
         products = parseFile || []
 
+        //limita el numero de productos
+        if (limit && !isNaN(limit)) {
+            products = products.slice(0, limit)
+        }
+
         return products
     } catch(err) {
         console.log(err)
