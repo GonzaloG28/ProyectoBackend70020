@@ -76,9 +76,13 @@ const updateProduct = async(id, productData) => {
         await getProducts()
 
         const index = products.findIndex((p) => p.id === id)
+
+        //Excluimos el id del cuerpo de la solicitud
+        const { id: _, ...updatedData } = productData
+
         products[index] = {
             ...products[index],
-            ...productData
+            ...updatedData
         }
 
         await fs.promises.writeFile(path, JSON.stringify(products))

@@ -45,7 +45,11 @@ router.get("/products/:pid", async (req, res) => {
 router.put("/products/:pid", async (req, res) =>{
     const { pid } = req.params
     const body = req.body
-    const product = await productManager.updateProduct(pid, body)
+
+    //Excluimos id de productData para que no se pueda modificar
+    const { id, ...productData } = body
+
+    const product = await productManager.updateProduct(pid, productData)
 
     res.send(product)
 })
