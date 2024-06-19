@@ -67,7 +67,6 @@ const addProductToCart = async (cid, pid) =>{
 }
 
 export default {
-    getCarts,
     createCart,
     getCartById,
     addProductToCart

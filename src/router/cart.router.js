@@ -17,12 +17,6 @@ router.post("/carts", async(req, res) =>{
     }
 })
 
-//obtener todos los carritos
-router.get("/carts", async(req, res) =>{
-    const carts = await cartManager.getCarts()
-    res.send(carts)
-})
-
 //obtener un carrito
 router.get("/carts/:cid", async(req, res) =>{
     try{
