@@ -3,9 +3,9 @@ const socket = io()
 
 const productsList = document.getElementById("productsList")
 const addForm = document.getElementById("addForm")
-const price = document.getElementById("price").value
+const price = document.getElementById("price")
 const description = document.getElementById("description")
-const title = document.getElementById("title").value
+const title = document.getElementById("title")
 const deleteForm = document.getElementById("deleteForm")
 
 //chequear si recibimos los productos
@@ -41,6 +41,22 @@ addForm.addEventListener("submit", async(e) =>{
         headers: {
             "Content-type":"application/json"
         },
-        body: JSON.stringify({title, price, description})
+        body: JSON.stringify({title: title.value, price: price.value, description: description.value})
+    })
+})
+
+
+//eliminacion del producto
+deleteForm.addEventListener("submit", async(e) =>{
+    e.preventDefault()
+
+    const id = document.getElementById("id")
+
+    await fetch("/realtimeproducts", {
+        method: "DELETE",
+        headers: {
+            "Content-type":"application/json"
+        },
+        body: JSON.stringify({ id: id.value })
     })
 })

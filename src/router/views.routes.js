@@ -6,7 +6,7 @@ const router = Router()
 
 router.get("/", async(req, res) =>{
     const product = await productManager.getProducts()
-    res.render("home", { product })
+    res.render("home",  { product } )
 })
 
 router.get("/realtimeproducts", async (req, res) =>{
@@ -20,9 +20,20 @@ router.get("/realtimeproducts", async (req, res) =>{
 })
 
 router.post("/realtimeproducts", async (req, res) =>{
-    //await productManager.addProduct(req.body)
+    await productManager.addProduct(req.body)
     console.log(req.body)
+    const product = await productManager.getProducts()
+    io.emit("products", product)
     res.render("realTimeProducts")
+})
+
+
+router.delete("/realtimeproducts", async (req, res) =>{
+  const { id } = req.body
+  await productManager.deleteProduct(id)
+  const product = await productManager.getProducts()
+  io.emit("products", product)
+  res.render("realTimeProducts")
 })
 
 export default router
