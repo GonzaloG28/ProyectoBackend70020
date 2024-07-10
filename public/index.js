@@ -22,7 +22,10 @@ socket.on("products", (data) =>{
             <h5 class = "card-title">${product.title}</h5>
             <p class = "card-text">ID: ${product.id}</p>
             <p class = "card-text">${product.description}</p>
-            <p class = "card-text">$${product.price}</p>
+            <p class = "card-text">Precio: $${product.price}</p>
+            <p class = "card-text">Categoria: ${product.category}</p>
+            <p class = "card-text">Stock: ${product.stock}</p>
+            <p class = "card-text">Code: ${product.code}</p>
         </div>
         ` 
 
@@ -32,7 +35,6 @@ socket.on("products", (data) =>{
 
 
 //push del producto
-
 addForm.addEventListener("submit", async(e) =>{
     e.preventDefault()
 

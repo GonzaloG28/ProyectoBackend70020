@@ -4,9 +4,9 @@ import { io } from "../app.js"
 
 const router = Router()
 
-router.get("/", async(req, res) =>{
+router.get("/products", async(req, res) =>{
     const product = await productManager.getProducts()
-    res.render("home",  { product } )
+    res.render("index", { product })
 })
 
 router.get("/realtimeproducts", async (req, res) =>{

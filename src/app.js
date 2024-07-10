@@ -24,7 +24,7 @@ app.use(express.static("public"))
 
 app.use("/api", productRouter)
 app.use("/api", cartRouter)
-app.use("/", viewsRoutes);
+app.use("/", viewsRoutes)
 
 
 

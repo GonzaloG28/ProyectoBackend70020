@@ -1,10 +1,16 @@
 {{! Formulario para agregar un producto }}
+
+<h3 class="text-center m-3">CREA Y ELIMINA PRODUCTOS</h3>
+
 <div class="d-flex p-5">
 
   <form class="d-flex flex-column gap-2 m-3" id="addForm">
-    <input id="title" type="text" name="title" placeholder="Nombre del producto" />
-    <input id="price" type="text" name="price" placeholder="Precio del producto" />
-    <input id="description" type="text" name="description" placeholder="Descripción del producto" />
+    <input id="title" type="text" name="title" placeholder="Nombre del producto" required />
+    <input id="price" type="text" name="price" placeholder="Precio del producto" required />
+    <input id="description" type="text" name="description" placeholder="Descripción del producto" required />
+    <input id="category" type="text" name="category" placeholder="Categoria del producto" required />
+    <input id="stock" type="text" name="stock" placeholder="Stock del producto" required />
+    <input id="code" type="text" name="code" placeholder="Codigo del producto" required />
     <button type="submit">Agregar producto</button>
   </form>
 
