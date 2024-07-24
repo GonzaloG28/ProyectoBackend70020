@@ -1,4 +1,4 @@
-import { Router } from "express"
+/* import { Router } from "express"
 import productManager from "../managers/productManager.js"
 import { io } from "../app.js"
 
@@ -36,4 +36,4 @@ router.delete("/realtimeproducts", async (req, res) =>{
   res.render("realTimeProducts")
 })
 
-export default router
+export default router */

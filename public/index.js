@@ -1,17 +1,23 @@
-
+/* 
 const socket = io()
 
 const productsList = document.getElementById("productsList")
-const addForm = document.getElementById("addForm")
+
 const price = document.getElementById("price")
 const description = document.getElementById("description")
 const title = document.getElementById("title")
+const category = document.getElementById("category")
+const stock = document.getElementById("stock")
+const code = document.getElementById("code")
+
+const addForm = document.getElementById("addForm")
 const deleteForm = document.getElementById("deleteForm")
 
-//chequear si recibimos los productos
+
+/chequear si recibimos los productos
 socket.on("products", (data) =>{
     console.log(data)
-    //limpiar DOM antes de leer productos
+    /limpiar DOM antes de leer productos
     productsList.innerHTML= ""
 
     data.forEach(product => {
@@ -31,11 +37,11 @@ socket.on("products", (data) =>{
 
         productsList.appendChild(card)
     })
-})
+}) */
 
 
 //push del producto
-addForm.addEventListener("submit", async(e) =>{
+/* addForm.addEventListener("submit", async(e) =>{
     e.preventDefault()
 
     await fetch("/realtimeproducts", {
@@ -43,13 +49,13 @@ addForm.addEventListener("submit", async(e) =>{
         headers: {
             "Content-type":"application/json"
         },
-        body: JSON.stringify({title: title.value, price: price.value, description: description.value})
+        body: JSON.stringify({title: title.value, price: price.value, description: description.value, category: category.value, stock: stock.value, code: code.value})
     })
-})
+}) */
 
 
 //eliminacion del producto
-deleteForm.addEventListener("submit", async(e) =>{
+/* deleteForm.addEventListener("submit", async(e) =>{
     e.preventDefault()
 
     const id = document.getElementById("id")
@@ -61,4 +67,4 @@ deleteForm.addEventListener("submit", async(e) =>{
         },
         body: JSON.stringify({ id: id.value })
     })
-})
+}) */
