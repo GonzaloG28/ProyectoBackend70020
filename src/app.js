@@ -1,13 +1,18 @@
 import express from "express"
 import productRouter from "./router/product.router.js"
 import cartRouter from "./router/cart.router.js"
-import handlebars from "express-handlebars"
-import { Server } from "socket.io"
+import { connectMongoDB } from "./config/mongoDB.config.js"
+import envs from "./config/envs.config.js"
+
+//import handlebars from "express-handlebars"
+// import { Server } from "socket.io"
 //import __dirname from "./dirname.js"
 //import viewsRoutes from "./router/views.routes.js"
 
-const PORT = 8080
+//const PORT = 8080
 const app = express()
+
+connectMongoDB()
  
 app.use(express.json())
 //sirve para que pueda leer todo tipo de escritura
@@ -27,8 +32,12 @@ app.use("/api", cartRouter)
 //app.use("/", viewsRoutes)
 
 
+app.listen(envs.PORT, () => {
+    console.log(`Servidor escuchando en el puerto ${envs.PORT}`)
+})
+
 //servidor conectado en puerto 8080
- const serverHttp = app.listen(PORT, () =>{
+/*  const serverHttp = app.listen(PORT, () =>{
     console.log(`Servidor escuchando en el puerto ${PORT}`)
 })
 
@@ -37,4 +46,5 @@ export const io = new Server(serverHttp)
 
 io.on("connection", (socket) =>{
     console.log("Nuevo cliente conectado")
-})
+}) */
+
