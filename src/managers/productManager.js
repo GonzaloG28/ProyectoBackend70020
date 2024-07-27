@@ -39,13 +39,13 @@ const addProduct = async(product) => {
 }
 
 //leer producto
-const getProducts = async(limit) =>{
+/* const getProducts = async(limit) =>{
     try{
         const fileJson = await fs.promises.readFile(path, "utf-8")
         const parseFile = JSON.parse(fileJson)
         products = parseFile || []
 
-        //limita el numero de productos
+        /limita el numero de productos
         if (limit && !isNaN(limit)) {
             products = products.slice(0, limit)
         }
@@ -55,10 +55,10 @@ const getProducts = async(limit) =>{
         console.log(err)
     }
 }
-
+ */
 
 //leer producto por id
-const getProductById = async(id) => {
+/* const getProductById = async(id) => {
     try{
         await getProducts()
         const product = products.find((p) => p.id === id)
@@ -68,10 +68,10 @@ const getProductById = async(id) => {
         console.log(err)
     }
 }
-
+ */
 
 //actualizar un producto
-const updateProduct = async(id, productData) => {
+/* const updateProduct = async(id, productData) => {
     try{
         await getProducts()
 
@@ -92,10 +92,10 @@ const updateProduct = async(id, productData) => {
         console.log(err)
     }
 }
-
+ */
 
 //eliminar producto
-const deleteProduct = async(id) =>{
+/* const deleteProduct = async(id) =>{
     try{
         await getProducts()
 
@@ -106,12 +106,12 @@ const deleteProduct = async(id) =>{
     }catch(err){
         console.log(err)
     }
-}
+} */
 
-export default {
+/* export default {
     addProduct,
     getProducts,
     getProductById,
     updateProduct,
     deleteProduct
-}
+} */

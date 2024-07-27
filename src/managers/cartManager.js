@@ -1,13 +1,13 @@
-import fs from "fs"
-import { v4 as uuid } from "uuid"
+/* import fs from "fs"
+import { v4 as uuid } from "uuid" */
 
 //iniciamos carts vacio
-let carts = []
+/* let carts = []
 const path = "./src/managers/data/carts.json"
-
+ */
 
 //crear carrito
-const createCart = async() =>{
+/* const createCart = async() =>{
     await getCarts()
     const newCart = {
         id: uuid(),
@@ -19,34 +19,34 @@ const createCart = async() =>{
 
     return newCart
 }
-
+ */
 
 //leer carritos
-const getCarts = async () =>{
+/* const getCarts = async () =>{
     const cartsJson = await fs.promises.readFile(path, "utf-8")
     const parseFile = JSON.parse(cartsJson)
     carts = parseFile || []
 
     return carts
 }
-
+ */
 
 //leer carrito por ID
-const getCartById = async(cid) =>{
+/* const getCartById = async(cid) =>{
     await getCarts()
     const cart = carts.find((c) => c.id === cid)
 
     return cart
 }
-
+ */
 
 //añadir producto al carrito
-const addProductToCart = async (cid, pid) =>{
+/* const addProductToCart = async (cid, pid) =>{
     await getCarts()
     const cart = await getCartById(cid)
-
+ */
     //logica para hacer que si producto ya esta, solo se sume quantity
-    const ProductExist = cart.products.findIndex(item => item.product === pid)
+/*     const ProductExist = cart.products.findIndex(item => item.product === pid)
 
     if(ProductExist !== -1){
 
@@ -64,12 +64,12 @@ const addProductToCart = async (cid, pid) =>{
     await fs.promises.writeFile(path, JSON.stringify(carts))
 
     return cart
-}
+} */
 
-export default {
+/* export default {
     createCart,
     getCartById,
     addProductToCart
-}
+} */
 
 

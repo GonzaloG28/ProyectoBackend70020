@@ -1,6 +1,6 @@
 import { Router } from "express"
 import { checkProductData } from "../middleware/checkProductData.middleware.js"
-import productManager from "../managers/productManager.js"
+import productDao from "../dao/product.dao.js"
 
 
 const router = Router()
@@ -9,18 +9,31 @@ const router = Router()
 router.get("/products", async (req, res) =>{
 
     try {
-        //si req.query.limit esta definido convierte el valor a un numero, y si no, lo establece como indefinido
-        const limit = req.query.limit ? parseInt(req.query.limit) : null
+      const {limit, page, sort, category, status} = req.query
 
-        //si limit es distinto a null y no es un numero o es menor a 0 envia el error 400
-        if (limit !== null && (isNaN(limit) || limit <= 0)) {
-            return res.status(400).send("El parámetro limit debe ser un número positivo")
+      const options = {
+        limit: limit || 10,
+        page: page || 1,
+        sort: {
+            price: sort === "asc" ? 1 : -1
         }
-        //si limit es valido o no se presenta devuelve o el limite de productos o todos los productos
-        const products = await productManager.getProducts(limit)
-        res.send(products)
+      }
+
+      if(status){
+        const products = await productDao.getAll({status}, options)
+        return res.status(200).json({ status: "ok", products})
+      }
+
+      if(category){
+        const products = await productDao.getAll({category}, options)
+        return res.status(200).json({status: "ok", products})
+      }
+
+      const products = await productDao.getAll({}, options)
+      res.status(200).json({ status: "ok", products})
 
     } catch (err) {
+        console.log(err)
         res.status(500).send("Error al obtener los productos")
     }
 })
@@ -29,7 +42,7 @@ router.get("/products", async (req, res) =>{
 router.get("/products/:pid", async (req, res) => {
     try {
       const { pid } = req.params;
-      const product = await productManager.getProductById(pid)
+      const product = await productDao.getById(pid)
       if (!product) return res.status(404).json({ status: "error", msg: "Producto no encontrado" })
   
       res.status(200).json({ status: "ok", product })
@@ -46,12 +59,9 @@ router.put("/products/:pid", async (req, res) =>{
     const { pid } = req.params
     const body = req.body
 
-    //Excluimos id de productData para que no se pueda modificar
-    const { id, ...productData } = body
+    const product = await productDao.update(pid, body)
 
-    const product = await productManager.updateProduct(pid, productData)
-
-    res.send(product)
+    res.status(200).json({ status: "ok", product})
 })
 
 
@@ -59,9 +69,9 @@ router.put("/products/:pid", async (req, res) =>{
 router.post("/products", checkProductData, async(req, res) =>{
     try{
         const body = req.body
-        const product = await productManager.addProduct(body)
+        const product = await productDao.create(body)
 
-        res.status(201).json({ status:"ok", product, msg:"Producto creado"})
+        res.status(201).json({ status:"ok", product})
     }catch(err){
         console.log(err)
         res.status(500).json({ status:"error", msg:"Error interno del servidor"})
@@ -72,11 +82,10 @@ router.post("/products", checkProductData, async(req, res) =>{
 router.delete("/products/:pid", async(req, res) =>{
     try{
         const { pid } = req.params
-        const product = await productManager.getProductById(pid)
+        const product = await productDao.deleteOne(pid)
 
         if(!product) return res.status(404).json({ status:"error", msg:"Producto no encontrado"})
 
-        await productManager.deleteProduct(pid)
         res.status(200).json({ status:"ok", msg:`Producto con el ID ${pid} eliminado con exito` })
 
     }catch(err){

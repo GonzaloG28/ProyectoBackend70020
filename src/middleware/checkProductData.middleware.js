@@ -4,7 +4,7 @@
 export const checkProductData = async(req, res, next) => {
     try{
         const { title, description, code, price, stock, category, thumbnails } = req.body
-        /*const newProduct = {
+        const newProduct = {
             title,
             description,
             code,
@@ -12,7 +12,7 @@ export const checkProductData = async(req, res, next) => {
             stock,
             category,
             thumbnails,
-        }*/
+        }
 
         //funcion que verifica que se completen todos los campos excepto thumbnails
         if(!title || !description || !code || !price || !stock || !category){
