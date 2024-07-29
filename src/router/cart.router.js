@@ -53,7 +53,7 @@ router.delete("/carts/:cid/product/:pid", checkProductAndCart, async (req, res) 
     try{
         const { cid, pid } = req.params
         const cart = await cartDao.deleteProductInCart(cid, pid)
-        res.status(201).json({ status: "ok", cart})
+        res.status(201).json({ status: "ok", msg:"Producto eliminado", cart })
     }catch(err){
         console.log(err)
         res.status(500).json({ status: "error", msg: "Error interno del servidor"})
@@ -81,7 +81,7 @@ router.delete("/carts/:cid", async(req, res) =>{
         const { cid } = req.params
         const cart = await cartDao.getById(cid)
 
-        if(!cart) return res.status(404).json({ status: "error", msg: "Carrito no encontra"})
+        if(!cart) return res.status(404).json({ status: "error", msg: "Carrito no encontrado"})
 
         const cartResponse = await cartDao.deleteAllProductsInCart(cid)
         res.status(201).json({ status: "ok", cart: cartResponse})

@@ -27,7 +27,7 @@ const addProductToCart = async (cid, pid) =>{
     )
 
     if(!productInCart) {
-        await cartModel.updateOne({ _id: cid }, { $push: { products: { product: pid, quantity: 1} } })
+        await cartModel.updateOne({ _id: cid },{ $push: { products: { product: pid, quantity: 1} } })
     }
 
     const cart = await cartModel.findById(cid)
@@ -38,9 +38,14 @@ const addProductToCart = async (cid, pid) =>{
 
 //eliminar producto del carrito
 const deleteProductInCart = async (cid, pid) =>{
+
+    //encuentra el carrito por id
     const cart = await cartModel.findById(cid)
-    const productsFilter =  cart.products.filter( prod => prod.product.toString() !== pid)
-    const cartResponse = await cartModel.findByIdAndUpdate(cid, { $set: {productsFilter} }, { new: true } )
+
+    //filtra los productos para eliminar el producto especificado
+    const productsFilter = cart.products.filter(prod => prod.product._id.toString() !== pid)
+    //actualiza el carrito con el array de productos filtrados
+    const cartResponse = await cartModel.findByIdAndUpdate(cid, { $set: { products: productsFilter } }, { new: true } )
     
     return cartResponse
 }
