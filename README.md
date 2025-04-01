@@ -15,3 +15,9 @@ Para ejecutar este proyecto, es necesario configurar las siguientes variables de
 ```env
 PORT=3000  # Puerto en el que se ejecutará la API
 MONGO_URL=  # URL de conexión a la base de datos MongoDB
+
+```
+## Autor
+
+[GonzaloG28](https://github.com/GonzaloG28)
+
